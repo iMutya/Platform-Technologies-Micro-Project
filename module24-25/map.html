@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Map App</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- Banner Section -->
+    <header class="banner">
+        <h1>🌍 Location Map App</h1>
+        <button id="theme-toggle">🌙 Dark Mode</button>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Map Section -->
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- Input & Results Section -->
+        <div id="input-container">
+            <h2>📍 Add a Location</h2>
+            <input type="text" id="locationInput" placeholder="Enter a location">
+            <button id="addLocationButton">Add Location</button>
+            <ul id="locationsList"></ul>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const themeToggle = document.getElementById("theme-toggle");
+            const body = document.body;
+
+            if (localStorage.getItem("theme") === "dark") {
+                body.classList.add("dark-mode");
+                themeToggle.textContent = "☀️ Light Mode";
+            }
+
+            themeToggle.addEventListener("click", function () {
+                body.classList.toggle("dark-mode");
+
+                if (body.classList.contains("dark-mode")) {
+                    themeToggle.textContent = "☀️ Light Mode";
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    themeToggle.textContent = "🌙 Dark Mode";
+                    localStorage.setItem("theme", "light");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
